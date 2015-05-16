@@ -65,6 +65,12 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
     External (PDC6, UnknownObj)
     External (PDC7, UnknownObj)
 
+    Method (B1B2, 2, NotSerialized)
+    {
+        Or (ShiftLeft (Arg1, 0x08), Arg0, Local0)
+        Return (Local0)
+    }
+    
     Name (SS1, Zero)
     Name (SS2, Zero)
     Name (SS3, One)
@@ -760,7 +766,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
 
             Method (UPBI, 0, NotSerialized)
             {
-                Store (^^PCI0.LPCB.EC0.BFCC, Local5)
+                //Store (^^PCI0.LPCB.EC0.BFCC, Local5)
+                Store (B1B2(^^PCI0.LPCB.EC0.FCC0, ^^PCI0.LPCB.EC0.FCC1), Local5)
                 If (LAnd (Local5, LNot (And (Local5, 0x8000))))
                 {
                     ShiftRight (Local5, 0x05, Local5)
@@ -846,7 +853,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
 
             Method (UPBS, 0, NotSerialized)
             {
-                Store (^^PCI0.LPCB.EC0.MCUR, Local0)
+                //Store (^^PCI0.LPCB.EC0.MCUR, Local0)
+                Store (B1B2(^^PCI0.LPCB.EC0.CUR0,^^PCI0.LPCB.EC0.CUR1), Local0)
                 If (And (Local0, 0x8000))
                 {
                     If (LEqual (Local0, 0xFFFF))
@@ -866,7 +874,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                     Store (Local0, Index (PBST, One))
                 }
 
-                Store (^^PCI0.LPCB.EC0.MBRM, Local5)
+                //Store (^^PCI0.LPCB.EC0.MBRM, Local5)
+                Store (B1B2(^^PCI0.LPCB.EC0.BRM0,^^PCI0.LPCB.EC0.BRM1), Local5)
                 If (LNot (And (Local5, 0x8000)))
                 {
                     ShiftRight (Local5, 0x05, Local5)
@@ -882,7 +891,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                     Store (FABL, Index (PBST, 0x02))
                 }
 
-                Store (^^PCI0.LPCB.EC0.MBCV, Index (PBST, 0x03))
+                //Store (^^PCI0.LPCB.EC0.MBCV, Index (PBST, 0x03))
+                Store (B1B2(^^PCI0.LPCB.EC0.BCV0,^^PCI0.LPCB.EC0.BCV1), Index (PBST, 0x03))
                 Store (^^PCI0.LPCB.EC0.MBST, Index (PBST, Zero))
             }
 
@@ -2736,7 +2746,9 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                         Offset (0x70), 
                         BCLB,   8, 
                         BCHB,   8, 
-                        BFCC,   16, 
+                        //BFCC,   16, 
+                        FCC0,   8,
+                        FCC1,   8,
                         BVLB,   8, 
                         BVHB,   8, 
                         BDVO,   8, 
@@ -2745,9 +2757,15 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                         ECTB,   1, 
                         Offset (0x82), 
                         MBST,   8, 
-                        MCUR,   16, 
-                        MBRM,   16, 
-                        MBCV,   16, 
+                        //MCUR,   16, 
+                        CUR0,   8,
+                        CUR1,   8,
+                        //MBRM,   16, 
+                        BRM0,   8,
+                        BRM1,   8,
+                        //MBCV,   16, 
+                        BCV0,   8,
+                        BCV1,   8,
                         Offset (0x8D), 
                             ,   5, 
                         MBFC,   1, 
@@ -4556,7 +4574,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                         {
                             If (LEqual (^^^BAT0._STA (), 0x1F))
                             {
-                                If (LLessEqual (^^LPCB.EC0.MBRM, 0x96))
+                                //If (LLessEqual (^^LPCB.EC0.MBRM, 0x96))
+                                If (LLessEqual (B1B2(^^LPCB.EC0.BRM0,^^LPCB.EC0.BRM1), 0x96))
                                 {
                                     Store (One, Local0)
                                 }
@@ -5374,7 +5393,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                 ^^PCI0.LPCB.EC0.SMRD (0x09, 0x16, 0x18, RefOf (Local1))
                 Divide (Local1, 0x0100, Local2, Index (DerefOf (Index (Local0, 0x02)), One))
                 Store (Local2, Index (DerefOf (Index (Local0, 0x02)), Zero))
-                Store (^^PCI0.LPCB.EC0.BFCC, Local1)
+                //Store (^^PCI0.LPCB.EC0.BFCC, Local1)
+                Store (B1B2(^^PCI0.LPCB.EC0.FCC0, ^^PCI0.LPCB.EC0.FCC1), Local1)
                 ShiftRight (Local1, 0x05, Local1)
                 ShiftLeft (Local1, 0x05, Local1)
                 Divide (Local1, 0x0100, Local2, Index (DerefOf (Index (Local0, 0x02)), 0x03))
@@ -6624,7 +6644,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                                         {
                                             If (LEqual (_T_0, 0x02))
                                             {
-                                                Store (^^PCI0.LPCB.EC0.MCUR, Local2)
+                                                //Store (^^PCI0.LPCB.EC0.MCUR, Local2)
+                                                Store (B1B2(^^PCI0.LPCB.EC0.CUR0,^^PCI0.LPCB.EC0.CUR1), Local2)
                                                 Store (0xC3, Local3)
                                                 If (And (LLessEqual (Local2, 0x0200), LEqual (^^PCI0.LPCB.EC0.BDVO, Local3)))
                                                 {
