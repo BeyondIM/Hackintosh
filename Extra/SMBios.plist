@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SMbiosdate</key>
+	<string>05/10/12</string>
+	<key>SMbiosvendor</key>
+	<string>Apple Inc.</string>
+	<key>SMbiosversion</key>
+	<string>MBA51.88Z.00EF.B00.1205221442</string>
+	<key>SMboardproduct</key>
+	<string>Mac-2E6FAB96566FE58C</string>
+	<key>SMfamily</key>
+	<string>MacBook Air</string>
+	<key>SMmanufacturer</key>
+	<string>Apple Inc.</string>
+	<key>SMproductname</key>
+	<string>MacBookAir5,2</string>
+	<key>SMserial</key>
+	<string>C02L623YDRVC</string>
+	<key>SMsystemversion</key>
+	<string>1.0</string>
+</dict>
+</plist>

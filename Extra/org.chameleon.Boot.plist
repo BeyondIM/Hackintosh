@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GenerateCStates</key>
+	<string>No</string>
+	<key>GeneratePStates</key>
+	<string>No</string>
+	<key>DropSSDT</key>
+	<string>Yes</string>
+	<key>Kernel</key>
+	<string>mach_kernel</string>
+	<key>Kernel Flags</key>
+	<string>-v -xcpm</string>
+	<key>PciRoot</key>
+	<string>0</string>
+	<key>Timeout</key>
+	<string>10</string>
+</dict>
+</plist>
