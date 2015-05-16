@@ -3534,8 +3534,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                         FLD3,   256
                     }
 
-                    Mutex (MUT0, 0x00)
-                    Mutex (MUT1, 0x00)
+                    Mutex(MUT0, 0)
+                    Mutex(MUT1, 0)
                     Method (SMRD, 4, NotSerialized)
                     {
                         If (LNot (ECOK))
@@ -10158,7 +10158,7 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
         Return (CMSD)
     }
 
-    Mutex (MUTX, 0x00)
+    Mutex(MUTX, 0)
     OperationRegion (PRT0, SystemIO, 0x80, 0x04)
     Field (PRT0, DWordAcc, Lock, Preserve)
     {
