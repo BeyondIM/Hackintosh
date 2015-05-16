@@ -10079,35 +10079,17 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                     Return (CRS2)
                 }
             }
-
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (_DSM, 4, NotSerialized)
             {
-                Name (DRET, Buffer (0x04)
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package()
                 {
-                     0x00                                           
+                    "AAPL,ig-platform-id", Buffer() { 0x03, 0x00, 0x66, 0x01 },
+                    "hda-gfx", Buffer() { "onboard-1" },
                 })
-                If (LEqual (Arg0, ToUUID ("6f3975e1-7a82-4f67-8b97-15bee060bedf")))
-                {
-                    If (LEqual (Arg2, Zero))
-                    {
-                        CreateWordField (DRET, Zero, F0SS)
-                        Store (0x02, F0SS)
-                        Return (DRET)
-                    }
-
-                    If (LEqual (Arg2, One))
-                    {
-                        If (LEqual (^^PEG0.PEGP.LNKV, 0x03))
-                        {
-                            Return (Zero)
-                        }
-
-                        Return (One)
-                    }
-                }
-
-                Return (DRET)
             }
+
+            
         }
     }
 
