@@ -10267,7 +10267,8 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
 
     Method (_WAK, 1, Serialized)  // _WAK: Wake
     {
-        Store (0xC4, SSMP)
+        If (LOr(LLess(Arg0,1),LGreater(Arg0,5))) { Store(3,Arg0) }
+Store (0xC4, SSMP)
         Store (Zero, P80D)
         CMSW (Zero, Zero)
         If (NEXP)
