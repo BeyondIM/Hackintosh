@@ -1918,7 +1918,7 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                 }
                 Else
                 {
-                    If (_OSI ("Windows 2012"))
+                    If(LOr(_OSI("Darwin"),_OSI("Windows 2012")))
                     {
                         If (LEqual (XCNT, Zero))
                         {
@@ -10611,7 +10611,7 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                     Store (0x07D9, OSYS)
                 }
 
-                If (_OSI ("Windows 2012"))
+                If(LOr(_OSI("Darwin"),_OSI("Windows 2012")))
                 {
                     Store (0x07DC, OSYS)
                 }
