@@ -3054,18 +3054,18 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                     Method (_Q0D, 0, NotSerialized)  // _Qxx: EC Query
                     {
                         Store ("_Q0D : Switch Display (Fn+F4)", Debug)
-                        ^^^GFX0.GHDS (Zero)
+                        ^^^IGPU.GHDS (Zero)
                         Sleep (0xC8)
                     }
 
                     Method (_Q10, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Notify (^^^GFX0.DD02, 0x87)
+                        Notify (^^^IGPU.DD02, 0x87)
                     }
 
                     Method (_Q11, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Notify (^^^GFX0.DD02, 0x86)
+                        Notify (^^^IGPU.DD02, 0x86)
                     }
 
                     Method (_Q15, 0, NotSerialized)  // _Qxx: EC Query
@@ -3910,9 +3910,9 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                                 {
                                     If (LNotEqual (Local0, LIDS))
                                     {
-                                        If (^^^GFX0.GLID (Local0))
+                                        If (^^^IGPU.GLID (Local0))
                                         {
-                                            Or (0x80000000, ^^^GFX0.CLID, ^^^GFX0.CLID)
+                                            Or (0x80000000, ^^^IGPU.CLID, ^^^IGPU.CLID)
                                         }
                                     }
                                 }
@@ -5665,40 +5665,40 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                             Store (Zero, Local3)
                             Store (0xAE, Index (DerefOf (Index (Local0, 0x02)), Zero))
                             Store (One, Index (DerefOf (Index (Local0, 0x02)), One))
-                            If (LOr (LEqual (^^PCI0.GFX0.CADL, 0x0100), LEqual (^^PCI0.GFX0.CAL2, 0x0100)))
+                            If (LOr (LEqual (^^PCI0.IGPU.CADL, 0x0100), LEqual (^^PCI0.IGPU.CAL2, 0x0100)))
                             {
                                 Or (Local3, 0x02, Local3)
                             }
 
-                            If (LOr (LEqual (^^PCI0.GFX0.CADL, 0x0400), LEqual (^^PCI0.GFX0.CAL2, 0x0400)))
+                            If (LOr (LEqual (^^PCI0.IGPU.CADL, 0x0400), LEqual (^^PCI0.IGPU.CAL2, 0x0400)))
                             {
                                 Or (Local3, One, Local3)
                             }
 
-                            If (LOr (LEqual (^^PCI0.GFX0.CADL, 0x0300), LEqual (^^PCI0.GFX0.CAL2, 0x0300)))
+                            If (LOr (LEqual (^^PCI0.IGPU.CADL, 0x0300), LEqual (^^PCI0.IGPU.CAL2, 0x0300)))
                             {
                                 Or (Local3, 0x10, Local3)
                             }
 
                             Store (Local3, Index (DerefOf (Index (Local0, 0x02)), 0x03))
                             Store (Zero, Local3)
-                            If (LOr (LEqual (^^PCI0.GFX0.NADL, 0x0100), LEqual (^^PCI0.GFX0.NDL2, 0x0100)))
+                            If (LOr (LEqual (^^PCI0.IGPU.NADL, 0x0100), LEqual (^^PCI0.IGPU.NDL2, 0x0100)))
                             {
                                 Or (Local3, 0x02, Local3)
                             }
 
-                            If (LOr (LEqual (^^PCI0.GFX0.NADL, 0x0400), LEqual (^^PCI0.GFX0.NDL2, 0x0400)))
+                            If (LOr (LEqual (^^PCI0.IGPU.NADL, 0x0400), LEqual (^^PCI0.IGPU.NDL2, 0x0400)))
                             {
                                 Or (Local3, One, Local3)
                             }
 
-                            If (LOr (LEqual (^^PCI0.GFX0.NADL, 0x0300), LEqual (^^PCI0.GFX0.NDL2, 0x0300)))
+                            If (LOr (LEqual (^^PCI0.IGPU.NADL, 0x0300), LEqual (^^PCI0.IGPU.NDL2, 0x0300)))
                             {
                                 Or (Local3, 0x10, Local3)
                             }
 
                             Store (Local3, Index (DerefOf (Index (Local0, 0x02)), 0x02))
-                            ^^PCI0.GFX0.GHDS (Zero)
+                            ^^PCI0.IGPU.GHDS (Zero)
                         }
                     }
                 }
@@ -5743,7 +5743,7 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                 If (LEqual (Local1, 0x02))
                 {
                     Store ("Fn+F2 Pressed", Debug)
-                    Notify (^^PCI0.GFX0.DD02, 0x87)
+                    Notify (^^PCI0.IGPU.DD02, 0x87)
                     Sleep (0x32)
                     Store (0xB6, Index (DerefOf (Index (Local0, 0x02)), Zero))
                     Store (One, Index (DerefOf (Index (Local0, 0x02)), One))
@@ -5756,7 +5756,7 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                 If (LEqual (Local1, 0x03))
                 {
                     Store ("Fn+F3 Pressed", Debug)
-                    Notify (^^PCI0.GFX0.DD02, 0x86)
+                    Notify (^^PCI0.IGPU.DD02, 0x86)
                     Sleep (0x32)
                     Store (0xB7, Index (DerefOf (Index (Local0, 0x02)), Zero))
                     Store (One, Index (DerefOf (Index (Local0, 0x02)), One))
@@ -5774,40 +5774,40 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                         Store (Zero, Local3)
                         Store (0xAE, Index (DerefOf (Index (Local0, 0x02)), Zero))
                         Store (One, Index (DerefOf (Index (Local0, 0x02)), One))
-                        If (LOr (LEqual (^^PCI0.GFX0.CADL, 0x0100), LEqual (^^PCI0.GFX0.CAL2, 0x0100)))
+                        If (LOr (LEqual (^^PCI0.IGPU.CADL, 0x0100), LEqual (^^PCI0.IGPU.CAL2, 0x0100)))
                         {
                             Or (Local3, 0x02, Local3)
                         }
 
-                        If (LOr (LEqual (^^PCI0.GFX0.CADL, 0x0400), LEqual (^^PCI0.GFX0.CAL2, 0x0400)))
+                        If (LOr (LEqual (^^PCI0.IGPU.CADL, 0x0400), LEqual (^^PCI0.IGPU.CAL2, 0x0400)))
                         {
                             Or (Local3, One, Local3)
                         }
 
-                        If (LOr (LEqual (^^PCI0.GFX0.CADL, 0x0300), LEqual (^^PCI0.GFX0.CAL2, 0x0300)))
+                        If (LOr (LEqual (^^PCI0.IGPU.CADL, 0x0300), LEqual (^^PCI0.IGPU.CAL2, 0x0300)))
                         {
                             Or (Local3, 0x10, Local3)
                         }
 
                         Store (Local3, Index (DerefOf (Index (Local0, 0x02)), 0x03))
                         Store (Zero, Local3)
-                        If (LOr (LEqual (^^PCI0.GFX0.NADL, 0x0100), LEqual (^^PCI0.GFX0.NDL2, 0x0100)))
+                        If (LOr (LEqual (^^PCI0.IGPU.NADL, 0x0100), LEqual (^^PCI0.IGPU.NDL2, 0x0100)))
                         {
                             Or (Local3, 0x02, Local3)
                         }
 
-                        If (LOr (LEqual (^^PCI0.GFX0.NADL, 0x0400), LEqual (^^PCI0.GFX0.NDL2, 0x0400)))
+                        If (LOr (LEqual (^^PCI0.IGPU.NADL, 0x0400), LEqual (^^PCI0.IGPU.NDL2, 0x0400)))
                         {
                             Or (Local3, One, Local3)
                         }
 
-                        If (LOr (LEqual (^^PCI0.GFX0.NADL, 0x0300), LEqual (^^PCI0.GFX0.NDL2, 0x0300)))
+                        If (LOr (LEqual (^^PCI0.IGPU.NADL, 0x0300), LEqual (^^PCI0.IGPU.NDL2, 0x0300)))
                         {
                             Or (Local3, 0x10, Local3)
                         }
 
                         Store (Local3, Index (DerefOf (Index (Local0, 0x02)), 0x02))
-                        ^^PCI0.GFX0.GHDS (Zero)
+                        ^^PCI0.IGPU.GHDS (Zero)
                     }
                 }
 
@@ -8437,7 +8437,7 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
             }
         }
 
-        Device (GFX0)
+        Device (IGPU)
         {
             Name (_ADR, 0x00020000)  // _ADR: Address
             Method (PCPC, 0, NotSerialized)
@@ -9853,7 +9853,7 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                     }
                     Else
                     {
-                        Notify (GFX0, Arg1)
+                        Notify (IGPU, Arg1)
                     }
                 }
 
@@ -9863,7 +9863,7 @@ DefinitionBlock ("iASLKCNYkO.aml", "DSDT", 1, "HPQOEM", "INSYDE  ", 0x00000000)
                 }
                 Else
                 {
-                    Notify (GFX0, 0x80)
+                    Notify (IGPU, 0x80)
                 }
 
                 Return (Zero)
@@ -11173,9 +11173,9 @@ Store (0xC4, SSMP)
 
         Method (_L06, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            If (LAnd (\_SB.PCI0.GFX0.GSSE, LNot (GSMI)))
+            If (LAnd (\_SB.PCI0.IGPU.GSSE, LNot (GSMI)))
             {
-                \_SB.PCI0.GFX0.GSCI ()
+                \_SB.PCI0.IGPU.GSCI ()
             }
         }
 
